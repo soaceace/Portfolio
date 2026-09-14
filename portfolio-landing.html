@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ============================================================= -->
+<!--  EDIT #1: PAGE TITLE (what shows in the browser tab)          -->
+<!--  Change the text between <title> and </title>.               -->
+<!-- ============================================================= -->
+<title>Parker | Security &amp; Visual Work</title>
+
+<meta name="description" content="Parker: defensive security analyst with a decade behind the camera. Cybersecurity, motion graphics, film, and photography.">
+
+<!-- Fonts. This line pulls three typefaces from Google.
+     Archivo = the big headline font. JetBrains Mono = the small
+     tech/label font. Inter = the plain reading font. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* ============================================================= */
+  /*  EDIT #2: COLORS                                               */
+  /*  These are the site's colors, each named. Change a hex value  */
+  /*  here and it updates everywhere that color is used. This is    */
+  /*  exactly like editing the color variables in a Tumblr theme.   */
+  /* ============================================================= */
+  :root {
+    --bg:        #0e0d0b;   /* page background, warm near-black   */
+    --surface:   #1a1815;   /* raised panels / cards             */
+    --surface-2: #221f1b;   /* hover state for panels            */
+    --text:      #ece7df;   /* main text, warm off-white         */
+    --muted:     #88788a;   /* dimmed text and labels            */
+    --line:      #322e29;   /* thin divider lines                */
+    --accent:    #7f08ad;   /* signal amber. Reserved for the    */
+                            /*  security track + interactive bits */
+    --accent-dim:#fca9e7;   /* darker amber for borders          */
+  }
+
+  /* Respect people who turn off animations in their OS settings. */
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    /* faint vertical vignette so it feels lit, not flat black */
+    background-image: radial-gradient(120% 80% at 50% -10%, #1c1a16 0%, var(--bg) 55%);
+    min-height: 100vh;
+  }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+  /* ---------- HEADER ---------- */
+  header {
+    position: sticky; top: 0; z-index: 20;
+    backdrop-filter: blur(8px);
+    background: rgba(14,13,11,0.7);
+    border-bottom: 1px solid var(--line);
+  }
+  .bar {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 58px;
+  }
+  /* EDIT #3: YOUR NAME in the top-left. Replace LASTNAME. */
+  .logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px; letter-spacing: 0.5px; color: var(--text);
+    text-decoration: none;
+  }
+  .logo b { color: var(--accent); font-weight: 500; }
+  nav a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; color: var(--muted); text-decoration: none;
+    margin-left: 22px; letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+  nav a:hover, nav a:focus { color: var(--text); }
+  .nav-hide { }
+  @media (max-width: 620px) { .nav-hide { display: none; } }
+
+  /* ---------- HERO (the headline "thesis") ---------- */
+  .hero { padding: 92px 0 64px; }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 22px;
+  }
+  /* EDIT #4: THE BIG IDENTITY LINE. This is the one sentence that
+     tells a visitor who you are. Edit the words inside <h1>.
+     Wrap any word in <span class="hl"> ... </span> to make it amber. */
+  h1 {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2.4rem, 6vw, 4.4rem);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    max-width: 16ch;
+  }
+  h1 .hl { color: var(--accent); }
+  /* EDIT #5: the supporting line under the headline */
+  .sub {
+    margin-top: 22px; max-width: 46ch;
+    font-size: 1.05rem; color: var(--muted);
+  }
+
+  /* ---------- THE FORK (the four tracks = the signature) ---------- */
+  .fork-head {
+    display: flex; align-items: baseline; gap: 14px;
+    margin: 26px 0 18px;
+    border-top: 1px solid var(--line); padding-top: 30px;
+  }
+  .fork-head .eyebrow { margin: 0; }
+  .fork-head .count { font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--accent-dim); margin-left:auto; }
+
+  .tracks { display: grid; gap: 14px; padding-bottom: 80px; }
+
+  /* Each track is a link styled as a panel. */
+  .track {
+    display: grid;
+    grid-template-columns: 108px 1fr auto;
+    align-items: center; gap: 20px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 22px 24px;
+    text-decoration: none; color: var(--text);
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  }
+  .track:hover, .track:focus {
+    background: var(--surface-2);
+    border-color: var(--accent-dim);
+    transform: translateX(4px);
+    outline: none;
+  }
+  .track .path {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; color: var(--muted);
+  }
+  .track .t-title {
+    font-family: 'Archivo', sans-serif; font-weight: 700;
+    font-size: 1.3rem; letter-spacing: -0.01em;
+  }
+  .track .t-desc { color: var(--muted); font-size: 0.92rem; margin-top: 3px; }
+  .track .arrow { color: var(--muted); font-size: 20px; transition: color 0.2s, transform 0.2s; }
+  .track:hover .arrow, .track:focus .arrow { color: var(--accent); transform: translateX(3px); }
+
+  /* The LEAD track (security) gets the amber treatment so it reads
+     as the primary hire path. This is the one place we spend color. */
+  .track.lead { border-color: var(--accent-dim); background: linear-gradient(180deg, #201b12 0%, var(--surface) 100%); }
+  .track.lead .path { color: var(--accent); }
+  .track.lead .tag {
+    display:inline-block; font-family:'JetBrains Mono',monospace;
+    font-size:10px; letter-spacing:1px; text-transform:uppercase;
+    color: var(--bg); background: var(--accent);
+    padding: 2px 7px; border-radius: 4px; margin-left: 10px;
+    vertical-align: middle;
+  }
+
+  @media (max-width: 560px) {
+    .track { grid-template-columns: 1fr auto; }
+    .track .path { grid-column: 1 / -1; }
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer { border-top: 1px solid var(--line); padding: 34px 0 60px; }
+  .foot {
+    display: flex; flex-wrap: wrap; gap: 8px 26px;
+    align-items: center; justify-content: space-between;
+  }
+  .foot .loc { font-family:'JetBrains Mono',monospace; font-size:12px; color: var(--muted); }
+  /* EDIT #6: your contact links live here */
+  .foot a { color: var(--text); text-decoration: none; border-bottom: 1px solid var(--accent-dim); padding-bottom: 1px; font-size: 0.92rem; }
+  .foot a:hover { color: var(--accent); border-color: var(--accent); }
+  .foot .links a { margin-left: 20px; }
+
+  /* Gentle fade-up on load. Purely decorative. */
+  .fade { opacity: 0; transform: translateY(12px); animation: up 0.7s ease forwards; }
+  .fade:nth-child(2){animation-delay:.06s}.fade:nth-child(3){animation-delay:.12s}.fade:nth-child(4){animation-delay:.18s}.fade:nth-child(5){animation-delay:.24s}
+  @keyframes up { to { opacity: 1; transform: none; } }
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="wrap bar">
+    <!-- EDIT #3 lives here too: replace LASTNAME -->
+    <a class="logo" href="#top"><b>Teena</b> Collins-Smith</a>
+    <nav>
+      <a class="nav-hide" href="#tracks">Work</a>
+      <!-- EDIT #6: point this at your real email -->
+      <a href="mailto:teena.collinssmith@gmail.com">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="eyebrow fade">Navy veteran &middot; Philadelphia</div>
+
+    <!-- EDIT #4: your one-line identity claim -->
+    <h1 class="fade">I defend <span class="hl">systems</span> with a decade spent behind the camera.</h1>
+
+    <!-- EDIT #5: supporting line -->
+    <p class="sub fade">Training as a SOC analyst, building the defensive side of security. Before that, ten years shaping how things look on screen. Both halves live here.</p>
+  </section>
+
+  <!-- ===================== THE FORK ===================== -->
+  <section id="tracks">
+    <div class="fork-head">
+      <span class="eyebrow">Pick a track</span>
+      <span class="count">04 routes</span>
+    </div>
+
+    <div class="tracks">
+
+      <!-- LEAD TRACK: security. The amber one, the priority path.
+           EDIT the href to point at your real security page. -->
+      <a class="track lead fade" href="https://soaceace.github.io/Cybersecurity-Cheatsheet/">
+        <span class="path">/security</span>
+        <span>
+          <span class="t-title">Security &amp; Tech<span class="tag">Hiring focus</span></span>
+          <span class="t-desc">SOC analyst work, Security+, home lab, and the tools I've built.</span>
+        </span>
+        <span class="arrow">&rarr;</span>
+      </a>
+
+      <!-- EDIT hrefs below to your real pages when they exist. -->
+      <a class="track fade" href="https://www.youtube.com/@starchildmedia7425/videos">
+        <span class="path">/motion</span>
+        <span>
+          <span class="t-title">Motion Graphics</span>
+          <span class="t-desc">Animation, titles, and design in motion.</span>
+        </span>
+        <span class="arrow">&rarr;</span>
+      </a>
+
+      <a class="track fade" href="film.html">
+        <span class="path">/film</span>
+        <span>
+          <span class="t-title">Film</span>
+          <span class="t-desc">Camera, edit, and directing work.</span>
+        </span>
+        <span class="arrow">&rarr;</span>
+      </a>
+
+      <a class="track fade" href="photo.html">
+        <span class="path">/photo</span>
+        <span>
+          <span class="t-title">Photography</span>
+          <span class="t-desc">Selected stills.</span>
+        </span>
+        <span class="arrow">&rarr;</span>
+      </a>
+
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="loc">Based in Philadelphia, PA</span>
+    <!-- EDIT #6: your real links -->
+    <span class="links">
+      <a href="mailto:teena.collinssmith@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/collinsteena">LinkedIn</a>
+      <a href="https://github.com/soaceace">GitHub</a>
+    </span>
+  </div>
+</footer>
+
+</body>
+</html>
